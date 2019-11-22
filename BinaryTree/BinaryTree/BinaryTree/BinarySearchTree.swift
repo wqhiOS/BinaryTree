@@ -94,7 +94,7 @@ class BinarySearchTree<Element: Comparable> {
                 root = replacement
                 replacement?.parent = nil
             }
-            afterRemoving()
+            afterRemoving(node)
         }else {//度为0
             if node == node.parent?.left {
                 node.parent?.left = nil
@@ -105,14 +105,14 @@ class BinarySearchTree<Element: Comparable> {
             if node == root {
                 root = nil
             }
-            afterRemoving()
+            afterRemoving(node)
         }
         
         size -= 1
         
     }
     
-    func afterRemoving() {}
+    func afterRemoving(_ node: Node<Element>) {}
     
     func clear() {
         root = nil
