@@ -30,7 +30,6 @@
 		E311A4B623867D5100BA84E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E311A4D723867DB800BA84E3 /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
 		E311A4D823867DB800BA84E3 /* AVLTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
-		E311A4EF23867E1100BA84E3 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		E38E983823877F4E001733FD /* BinarySearchTree+Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinarySearchTree+Print.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,7 +65,6 @@
 			children = (
 				E311A4D623867DB800BA84E3 /* BinaryTree */,
 				E311A4B623867D5100BA84E3 /* main.swift */,
-				E311A4EF23867E1100BA84E3 /* Bridging-Header.h */,
 			);
 			path = BinaryTree;
 			sourceTree = "<group>";
@@ -269,7 +267,7 @@
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BinaryTree/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -281,7 +279,7 @@
 				DEVELOPMENT_TEAM = 5E3A9G5UU5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BinaryTree/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
