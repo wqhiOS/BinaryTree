@@ -11,6 +11,8 @@
 		E311A4E723867DB800BA84E3 /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E311A4D723867DB800BA84E3 /* BinarySearchTree.swift */; };
 		E311A4E823867DB800BA84E3 /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E311A4D823867DB800BA84E3 /* AVLTree.swift */; };
 		E38E983923877F4E001733FD /* BinarySearchTree+Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E983823877F4E001733FD /* BinarySearchTree+Print.swift */; };
+		E3A5404F238A7F3800118281 /* BinaryBalanceTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A5404E238A7F3800118281 /* BinaryBalanceTree.swift */; };
+		E3F8715D23882C2500F1DA52 /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8715C23882C2500F1DA52 /* RedBlackTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,8 @@
 		E311A4D723867DB800BA84E3 /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
 		E311A4D823867DB800BA84E3 /* AVLTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 		E38E983823877F4E001733FD /* BinarySearchTree+Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinarySearchTree+Print.swift"; sourceTree = "<group>"; };
+		E3A5404E238A7F3800118281 /* BinaryBalanceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryBalanceTree.swift; sourceTree = "<group>"; };
+		E3F8715C23882C2500F1DA52 /* RedBlackTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +78,9 @@
 			children = (
 				E311A4D723867DB800BA84E3 /* BinarySearchTree.swift */,
 				E38E983823877F4E001733FD /* BinarySearchTree+Print.swift */,
+				E3A5404E238A7F3800118281 /* BinaryBalanceTree.swift */,
 				E311A4D823867DB800BA84E3 /* AVLTree.swift */,
+				E3F8715C23882C2500F1DA52 /* RedBlackTree.swift */,
 			);
 			path = BinaryTree;
 			sourceTree = "<group>";
@@ -140,7 +146,9 @@
 				E311A4E823867DB800BA84E3 /* AVLTree.swift in Sources */,
 				E311A4E723867DB800BA84E3 /* BinarySearchTree.swift in Sources */,
 				E38E983923877F4E001733FD /* BinarySearchTree+Print.swift in Sources */,
+				E3F8715D23882C2500F1DA52 /* RedBlackTree.swift in Sources */,
 				E311A4B723867D5100BA84E3 /* main.swift in Sources */,
+				E3A5404F238A7F3800118281 /* BinaryBalanceTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

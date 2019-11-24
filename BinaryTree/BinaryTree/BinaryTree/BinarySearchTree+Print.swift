@@ -18,15 +18,9 @@ extension BinarySearchTree: CustomDebugStringConvertible {
         return root?.asString ?? "nil"
     }
 }
-extension Node: CustomDebugStringConvertible {
-    var debugDescription: String {
-        if let parentElement = parent?.element {
-            return "\(element)(\(parentElement))"
-        }else {
-            return "\(element)"
-        }
-    }
-}
+//extension Node: CustomDebugStringConvertible {
+//    
+//}
 
 extension Node
 {

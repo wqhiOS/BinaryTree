@@ -19,8 +19,10 @@ class BinarySearchTree<Element: Comparable> {
     func add(_ element: Element) {
         
         if root == nil {
-            root = Node(element: element, parent: nil)
+            let node = createElement(element, parent: nil)
+            root = node
             size += 1
+            afterAdding(node)
             return
         }
     
@@ -45,18 +47,18 @@ class BinarySearchTree<Element: Comparable> {
         
         switch compareResult {
         case .orderedAscending:
-            let node = Node(element: element, parent: targetNode)
+            let node = createElement(element, parent: targetNode)
             targetNode?.left = node
             size += 1
             afterAdding(node)
         case .orderedDescending:
-            let node = Node(element: element, parent: targetNode)
-            targetNode?.right = Node(element: element, parent: targetNode)
+            let node = createElement(element, parent: targetNode)
+            targetNode?.right = node
             size += 1
             afterAdding(node)
         case .orderedSame:
             targetNode?.element = element
-//            afterAdding(targetNode)
+            afterAdding(targetNode!)
         }
         
     }
@@ -125,6 +127,10 @@ class BinarySearchTree<Element: Comparable> {
         }else {
             return false
         }
+    }
+    
+    func createElement(_ element: Element,parent: Node<Element>?) -> Node<Element> {
+        return Node(element: element, parent: parent)
     }
     
     
@@ -263,7 +269,7 @@ extension BinarySearchTree {
     
 }
 
-class Node<Element:Comparable> {
+class Node<Element:Comparable>: CustomDebugStringConvertible {
 
     var left: Node<Element>?
     var right: Node<Element>?
@@ -287,6 +293,14 @@ class Node<Element:Comparable> {
     
     deinit {
        
+    }
+    
+    var debugDescription: String {
+        if let parentElement = parent?.element {
+            return "\(element)(\(parentElement))"
+        }else {
+            return "\(element)"
+        }
     }
     
 }

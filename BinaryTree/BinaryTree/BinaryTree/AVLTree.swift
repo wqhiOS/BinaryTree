@@ -9,7 +9,7 @@
 import Foundation
 
 /// 平衡二叉树(我们常说的平衡二叉树一般指的都是AVL树)
-class AVLTree<Element: Comparable>: BinarySearchTree<Element> {
+class AVLTree<Element: Comparable>: BinaryBalanceTree<Element> {
     
     /// 添加节点之后
     /// 1.如果平衡就从节点到父节点往上更新高度(高度是否会变化不好说啊)
@@ -54,7 +54,7 @@ class AVLTree<Element: Comparable>: BinarySearchTree<Element> {
         }
     }
     
-    private func restoreBalance(node grand: Node<Element>) {
+     func restoreBalance(node grand: Node<Element>) {
         //因为添加节点，一旦出现失衡，不可能导致父节点失衡，所以 parent肯定存在 同样node也肯定存在
         let parent = grand.tallerChild!
         let node = parent.tallerChild!
@@ -75,52 +75,7 @@ class AVLTree<Element: Comparable>: BinarySearchTree<Element> {
         }
     }
     
-    private func rotateLeft(node grand: Node<Element>) {
-        
-        let parent = grand.right
-        let parent_left = parent?.left
-        
-        if grand.isleftChild {
-            grand.parent?.left = parent
-        }else if grand.isRightChild {
-            grand.parent?.right = parent
-        }else {
-            root = parent
-        }
-        
-        parent?.left = grand //1
-        parent?.parent = grand.parent
-        grand.parent = parent
-        
-        grand.right = parent_left//2. 右旋和左旋就1.2两行不一样，可以抽出啦
-        parent_left?.parent = grand
-        
-        grand.updateHeight()
-        parent?.updateHeight()
-        
-    }
-    private func rotateRight(node grand: Node<Element>) {
-        let parent = grand.left
-        let parent_right = parent?.right
-        
-        if grand.isleftChild {
-            grand.parent?.left = parent
-        }else if grand.isRightChild {
-            grand.parent?.right = parent
-        }else {
-            root = parent
-        }
-        
-        parent?.right = grand
-        parent?.parent = grand.parent
-        grand.parent = parent
-        
-        grand.left = parent_right
-        parent_right?.parent = grand
-        
-        grand.updateHeight()
-        parent?.updateHeight()
-    }
+
 
 }
 

@@ -106,11 +106,22 @@ func AVLTreeAddTest() {
     
 }
 
+func RedBlackTreeAddTest() {
+    let elements = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+    let avltree = RedBlackTree<Int>()
+    elements.forEach { (element) in
+        print("#####\(element)#####")
+        avltree.add(element)
+        debugPrint(avltree)
+    }
+}
+
 //test0()
 //test1()
 //test2()
 //test3()
-AVLTreeAddTest()
+//AVLTreeAddTest()
+RedBlackTreeAddTest()
 
 
 
