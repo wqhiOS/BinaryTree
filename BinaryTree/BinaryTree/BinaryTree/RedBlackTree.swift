@@ -15,14 +15,12 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
         //默认添加的节点为红色。这样更方便一点
         
         //1. 如果是根节点。根节点设置为黑色
-        if node.parent == nil {
+        if node.parent == nil {// 
             color(node: node, color: .black)
             return
         }
         //2. 如果父节点是黑色，不需要做任何处理
-        if nodeIsBlack(node: node.parent) {
-            return
-        }
+        if nodeIsBlack(node: node.parent) {return}
         //3. 到这里，说明父节点是红色
         // 父节点是红色，分两大类，一类是叔节点为红色，另一类没有叔节点，或叔节点为黑色
         let uncle = node.uncle
