@@ -101,7 +101,8 @@ class RedBlackNode<Element: Comparable>: Node<Element> {
     
     var color: RedBlackNode.Color = .red
     override var debugDescription: String {
-        return "\(element)" + "_" + (color == .black ? "B" : "R")
+        return (color == .black ? "#" : "") + "\(element)"
+      
     }
 }
 extension Node {
