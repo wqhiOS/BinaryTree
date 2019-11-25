@@ -113,15 +113,12 @@ func RedBlackTreeAddTest() {
         rbTree.add(element)
     }
     debugPrint(rbTree)
-    print("Start")
-    
+
     elements.forEach { (element) in
-        print("#####\(element)#####")
+        print("willRemove 【\(element)】")
         rbTree.remove(element)
         debugPrint(rbTree)
     }
-    
-    
 }
 
 //test0()

@@ -111,7 +111,6 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
                 
                 if nodeIsBlack(node: parent) {
                     color(node: brother!, color: .red)
-                    #warning("这个地方有问题")
                     afterRemoving(parent, replacement: nil)
                     return
                 }else {
