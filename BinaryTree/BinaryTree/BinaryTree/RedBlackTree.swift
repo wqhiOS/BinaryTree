@@ -8,6 +8,11 @@
 
 import Cocoa
 
+/**
+添加和删除后的平衡两个方法中都有部分重复代码，可以优化
+ 但是平衡逻辑太过复杂，代码优化后可能导致思路不清晰，看不懂。
+ 所以暂不优化。
+*/
 class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
 
     override func afterAdding(_ node: Node<Element>) {
@@ -67,6 +72,7 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
         
     }
     
+    
     override func afterRemoving(_ node: Node<Element>, replacement: Node<Element>?) {
         //删除最后的操作，删除的都是度为0或1的节点。所以能来到这里的node，度只能为1或0，不可能为2
         
@@ -94,8 +100,7 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
          又因为能到这里，说明node是黑色，如果node是黑色，它肯定有兄弟节点。所以只需要看parent的left right指针，哪个是空即可
          */
         
-        // 删除black叶子节点
-        // 这里 node.parent.left == nil。因为一旦被删除 left就是为空了，随意用left判断。用因为能到这里 node不可能有两个自己诶单
+        // 这里 node.parent.left == nil。因为一旦被删除 left就是为空了，所以用left判断
 //        let isLeft = (node.parent?.left == nil)
         // 这里不能只写 (node.parent?.left == nil) ，因为有一种情况 还没有删除。就是在该方法里面调用afterRmoveing的时候，
         let isLeft = node.parent?.left == nil || node.isleftChild
