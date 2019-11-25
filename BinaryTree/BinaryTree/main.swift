@@ -108,12 +108,20 @@ func AVLTreeAddTest() {
 
 func RedBlackTreeAddTest() {
     let elements = [58,87,56,74,96,22,62,20,70,68,90,50]
-    let avltree = RedBlackTree<Int>()
+    let rbTree = RedBlackTree<Int>()
+    elements.forEach { (element) in
+        rbTree.add(element)
+    }
+    debugPrint(rbTree)
+    print("Start")
+    
     elements.forEach { (element) in
         print("#####\(element)#####")
-        avltree.add(element)
-        debugPrint(avltree)
+        rbTree.remove(element)
+        debugPrint(rbTree)
     }
+    
+    
 }
 
 //test0()

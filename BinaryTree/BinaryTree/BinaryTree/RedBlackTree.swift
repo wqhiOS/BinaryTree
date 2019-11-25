@@ -68,6 +68,122 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
         
     }
     
+    override func afterRemoving(_ node: Node<Element>, replacement: Node<Element>?) {
+        //删除最后的操作，删除的都是度为0或1的节点。所以能来到这里的node，度只能为1或0，不可能为2
+        
+        if nodeIsRed(node: node) {//删除的是红色节点，直接忽略
+            return
+        }
+        
+        if node.parent == nil {// 黑色节点，为root
+            root = nil
+            return
+        }
+        
+        // 拥有一个red子节点的black节点: 将替代的子节点染成black即可
+        if nodeIsRed(node: replacement) {
+            color(node: replacement!, color: .black)
+            return
+        }
+        
+        /*
+         注意这里如何判断是left还是right?
+         因为这里已经删除了，所以可以拿到parent。但是根据parent拿不到已删除的node这个节点，
+         所以无法用isLeftChild判断。
+         又因为能到这里，说明node是黑色，如果node是黑色，它肯定有兄弟节点。所以只需要看parent的left right指针，哪个是空即可
+         */
+        
+        // 删除black叶子节点
+        // 这里 node.parent.left == nil。因为一旦被删除 left就是为空了，随意用left判断。用因为能到这里 node不可能有两个自己诶单
+        let isLeft = (node.parent?.left == nil)
+        // 走到这里肯定有parent
+        let parent = node.parent!
+        // 有parent，自己是黑色，那肯定有brother，根据性质5
+        let brother = isLeft ? parent.right : parent.left
+        
+        if nodeIsBlack(node: brother) {//brother是黑色
+            // brother 没有红色节点
+            if !(nodeIsRed(node: brother?.left) || nodeIsRed(node: brother?.right)) {
+                
+                if nodeIsBlack(node: parent) {
+                    color(node: brother!, color: .red)
+                    afterAdding(parent)
+                    return
+                }else {
+                    color(node: parent, color: .black)
+                    color(node: brother!, color: .red)
+                    return
+                }
+                
+            }else {
+            // brother 有红色节点
+                if isLeft {
+                    
+                    //R
+                    let brotherLeft = brother?.left
+                    let brotherRight = brother?.right
+                    if brotherLeft != nil && brotherRight != nil {//兄弟节点 有两个red
+                        rotateLeft(node: parent)
+                        color(node: brother!, color: color(node: parent))
+                        color(node: brotherRight!, color: .black)
+                        color(node: parent, color: .black)
+                    }else if brotherLeft != nil {//brother有一个leftRed
+                        
+                        rotateRight(node: brother!)
+                        rotateLeft(node: parent)
+                        
+                        color(node: brotherLeft!, color: color(node: parent))
+                        color(node: brother!, color: .black)
+                        color(node: parent, color: .black)
+                        
+                    }else {//brother有一个rightRed
+                        
+                        rotateLeft(node: parent)
+                        color(node: brother!, color: color(node: parent))
+                        color(node: brotherRight!, color: .black)
+                        color(node: parent, color: .black)
+                        
+                    }
+                }else {
+                    //L
+                    let brotherLeft = brother?.left
+                    let brotherRight = brother?.right
+                    if brotherLeft != nil && brotherRight != nil {//兄弟节点 有两个red
+                        rotateRight(node: parent)
+                        color(node: brother!, color: color(node: parent))
+                        color(node: brotherLeft!, color: .black)
+                        color(node: parent, color: .black)
+                    }else if brotherLeft != nil {//brother有一个leftRed
+                        rotateRight(node: parent)
+                        color(node: brother!, color: color(node: parent))
+                        color(node: brotherLeft!, color: .black)
+                        color(node: parent, color: .black)
+                    }else {//brother有一个rightRed
+                        
+                        rotateLeft(node: brother!)
+                        rotateRight(node: parent)
+                        color(node: brotherLeft!, color: color(node: parent))
+                        color(node: brother!, color: .black)
+                        color(node: parent, color: .black)
+                        
+                    }
+                }
+            }
+        }else {//broter是红色
+            
+            color(node: brother!, color: .black)
+            color(node: parent, color: .red)
+            if isLeft {
+                rotateLeft(node: parent)
+            }else {
+                rotateRight(node: parent)
+            }
+            afterRemoving(node, replacement: nil)
+            
+        }
+        
+    }
+    
     override func createElement(_ element: Element,parent: Node<Element>?) -> Node<Element> {
         return RedBlackNode(element: element, parent: parent)
     }

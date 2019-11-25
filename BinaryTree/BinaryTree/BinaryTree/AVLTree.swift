@@ -36,7 +36,7 @@ class AVLTree<Element: Comparable>: BinaryBalanceTree<Element> {
      */
     
     
-    override func afterRemoving(_ node: Node<Element>) {
+    override func afterRemoving(_ node: Node<Element>, replacement: Node<Element>?) {
         var parent = node.parent
         while parent != nil {
             if parent!.isBalance {
