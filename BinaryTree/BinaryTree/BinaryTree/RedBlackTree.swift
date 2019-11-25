@@ -112,7 +112,8 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
         
         if nodeIsBlack(node: brother) {//brother是黑色
             // brother 没有红色节点
-            if !(nodeIsRed(node: brother?.left) || nodeIsRed(node: brother?.right)) {
+            #warning("待优化")
+            if !(nodeIsRed(node: brother?.left) || nodeIsRed(node: brother?.right)) {//brother没有红色节点
                 
                 if nodeIsBlack(node: parent) {
                     color(node: brother!, color: .red)
@@ -124,8 +125,7 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
                     return
                 }
                 
-            }else {
-            // brother 有红色节点
+            }else {// brother 至少有1个红色节点
                 if isLeft {
                     
                     //R
