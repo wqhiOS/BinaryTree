@@ -9,8 +9,7 @@
 import Cocoa
 
 class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
-    
-    
+
     override func afterAdding(_ node: Node<Element>) {
         //默认添加的节点为红色。这样更方便一点
         

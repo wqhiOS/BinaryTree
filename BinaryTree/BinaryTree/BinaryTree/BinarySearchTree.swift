@@ -74,11 +74,11 @@ class BinarySearchTree<Element: Comparable> {
         // 所以先判断这个
         if node.hasTowChildren {
             
-            guard let predecessor = self.predecessor(node: node) else {
+            guard let successor = successor(node: node) else {
                 return
             }
-            node.element = predecessor.element
-            node = predecessor
+            node.element = successor.element
+            node = successor
             
         }
         //走到这里，说明 node度要么是0 要么是1
@@ -223,6 +223,8 @@ extension BinarySearchTree {
         return nil
     }
     
+    /// 前序节点
+    /// - Parameter node: node
     private func predecessor(node: Node<Element>) -> Node<Element>?{
         
         if node.left != nil {
@@ -241,13 +243,15 @@ extension BinarySearchTree {
         
     }
     
+    /// 后继节点
+    /// - Parameter node: 后继节点
     private func successor(node: Node<Element>) -> Node<Element>? {
         if node.right != nil {
-                var predecessor = node.right
-                while predecessor?.left != nil {
-                    predecessor = predecessor?.left
+                var successor = node.right
+                while successor?.left != nil {
+                    successor = successor?.left
                 }
-                return predecessor
+                return successor
             }
         
         var targetNode = node
