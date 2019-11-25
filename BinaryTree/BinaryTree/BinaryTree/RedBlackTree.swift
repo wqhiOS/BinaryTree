@@ -74,16 +74,18 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
             return
         }
         
-        if node.parent == nil {// 黑色节点，为root
-            root = nil
-            return
-        }
-        
         // 拥有一个red子节点的black节点: 将替代的子节点染成black即可
         if nodeIsRed(node: replacement) {
             color(node: replacement!, color: .black)
             return
         }
+        
+        if node.parent == nil {// 黑色节点，为root
+            color(node: node, color: .black)
+            return
+        }
+        
+        
         
         /*
          注意这里如何判断是left还是right?
@@ -94,7 +96,10 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
         
         // 删除black叶子节点
         // 这里 node.parent.left == nil。因为一旦被删除 left就是为空了，随意用left判断。用因为能到这里 node不可能有两个自己诶单
-        let isLeft = (node.parent?.left == nil)
+//        let isLeft = (node.parent?.left == nil)
+        // 这里不能只写 (node.parent?.left == nil) ，因为有一种情况 还没有删除。就是在该方法里面调用afterRmoveing的时候，
+        let isLeft = node.parent?.left == nil || node.isleftChild
+        
         // 走到这里肯定有parent
         let parent = node.parent!
         // 有parent，自己是黑色，那肯定有brother，根据性质5
@@ -106,7 +111,8 @@ class RedBlackTree<Element: Comparable>: BinaryBalanceTree<Element> {
                 
                 if nodeIsBlack(node: parent) {
                     color(node: brother!, color: .red)
-                    afterAdding(parent)
+                    #warning("这个地方有问题")
+                    afterRemoving(parent, replacement: nil)
                     return
                 }else {
                     color(node: parent, color: .black)
@@ -214,7 +220,8 @@ class RedBlackNode<Element: Comparable>: Node<Element> {
     
     var color: RedBlackNode.Color = .red
     override var debugDescription: String {
-        return (color == .black ? "#" : "") + "\(element)"
+        
+        return (color == .black ? "" : "[R]") + "\(element)"
       
     }
 }
