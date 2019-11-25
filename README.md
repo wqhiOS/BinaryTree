@@ -42,5 +42,7 @@ class RedBlackNode<Element: Comparable>: Node<Element> {
 }
 ```
 
-
+> 二叉树打印到控制台，参考自：
+>
+> https://stackoverflow.com/questions/43898440/how-to-draw-a-binary-tree-in-console/43903427
 
