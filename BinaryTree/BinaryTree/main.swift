@@ -124,12 +124,51 @@ func RedBlackTreeAddTest() {
     
 }
 
+//非递归 使用迭代 前、中、后序遍历测试
+func traversalTest() {
+    let tree = BinarySearchTree<Int>()
+    elements.forEach { (element) in
+        tree.add(element)
+    }
+    debugPrint(tree)
+    print("==========前序遍历：")
+    var list = [Int]()
+    tree.preorderTraversal2 { (element) in
+        list.append(element)
+    }
+    print(list)
+    list.removeAll()
+    
+    print("==========中序遍历：")
+    tree.inorderTraversal2 { (element) in
+        list.append(element)
+    }
+    print(list)
+    list.removeAll()
+    
+    print("==========后序遍历：")
+    tree.postorderTraversal2 { (element) in
+        list.append(element)
+    }
+    print(list)
+    list.removeAll()
+    
+    tree.postorderTraversal { (element) in
+        list.append(element)
+    }
+    print(list)
+    
+    tree.postorderTraversal2()
+    
+}
+
 //test0()
 //test1()
 //test2()
 //test3()
 //AVLTreeAddTest()
-RedBlackTreeAddTest()
+//RedBlackTreeAddTest()
+traversalTest()
 
 
 

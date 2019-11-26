@@ -158,7 +158,6 @@ extension BinarySearchTree {
         preorderTraversal(_node.right, block: block)
     }
     
-    
     func inorderTraversal(_ block: (Element)->Void)  {
         inorderTraversal(root, block: block)
     }
@@ -172,6 +171,7 @@ extension BinarySearchTree {
         inorderTraversal(_node.right,block: block)
     }
     
+ 
     func postorderTraversal(_ block: (Element)->Void) {
         postorderTraversal(root, block: block)
     }
@@ -186,11 +186,11 @@ extension BinarySearchTree {
     }
     
     func levelTraversal(_ block: (Element)->Void) {
-        guard let root = root else {
+        guard let _root = root else {
             return
         }
         var queue = [Node<Element>]()
-        queue.append(root)
+        queue.append(_root)
         while !queue.isEmpty {
             let node = queue.removeFirst()
             block(node.element)
@@ -203,6 +203,97 @@ extension BinarySearchTree {
         }
     }
     
+}
+
+//Traversal not Recursive
+extension BinarySearchTree {
+    
+    /// 前序遍历 迭代实现
+    /// - Parameter block: block description
+    func preorderTraversal2(_ block:(Element)->Void) {
+        guard let _root = root else {
+            return
+        }
+        var stack = [Node<Element>]()
+        stack.append(_root)
+        while !stack.isEmpty {
+            let node = stack.removeLast()
+            block(node.element)
+            if let right = node.right {
+                stack.append(right)
+            }
+            if let left = node.left {
+                stack.append(left)
+            }
+        }
+    }
+    
+    
+    /// 中序遍历 迭代实现
+    /// - Parameter block: block description
+    func inorderTraversal2(_ block: (Element)->Void) {
+
+        var stack = [Node<Element>]()
+        var node = root
+        while node != nil || !stack.isEmpty {
+            if node != nil {
+                stack.append(node!)
+                node = node?.left
+            }else {
+                node = stack.removeLast()
+                block(node!.element)
+                node = node?.right
+            }
+        }
+        
+    }
+    /// 后序遍历 迭代实现
+    /// - Parameter block: block description
+    func postorderTraversal2(_ block: (Element)->Void) {
+        guard let _root = root else {
+            return
+        }
+        var stack = [Node<Element>]()
+        stack.append(_root)
+        var lastNode: Node<Element>?
+        while !stack.isEmpty {
+            let node = stack.last
+            if (node!.left == nil && node?.right == nil) || node!.left == lastNode || node!.right == lastNode {
+                lastNode = node
+                block(stack.removeLast().element)
+            }else {
+                if let right = node?.right {
+                    stack.append(right)
+                }
+                if let left = node?.left {
+                    stack.append(left)
+                }
+            }
+        }
+    }
+    
+    //前序遍历 转后序遍历 测试
+//    func postorderTraversal2() {
+//        var stack = [Node<Element>]()
+//        var list = [Element]()
+//        if root == nil {
+//            return
+//        }
+//        stack.append(root!)
+//        while !stack.isEmpty {
+//            let node = stack.removeLast()
+//            list.append(node.element)
+//            if node.left != nil {
+//                stack.append(node.left!)
+//            }
+//            if node.right != nil {
+//                stack.append(node.right!)
+//            }
+//        }
+//        list.reverse()
+//        print(list)
+//
+//    }
 }
 
 extension BinarySearchTree {
@@ -223,7 +314,7 @@ extension BinarySearchTree {
         return nil
     }
     
-    /// 前序节点
+    /// 前驱节点
     /// - Parameter node: node
     private func predecessor(node: Node<Element>) -> Node<Element>?{
         
