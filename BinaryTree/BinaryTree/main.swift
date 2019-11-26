@@ -113,15 +113,12 @@ func RedBlackTreeAddTest() {
         rbTree.add(element)
     }
     debugPrint(rbTree)
-    print("Start")
-    
+
     elements.forEach { (element) in
-        print("#####\(element)#####")
+        print("willRemove 【\(element)】")
         rbTree.remove(element)
         debugPrint(rbTree)
     }
-    
-    
 }
 
 //非递归 使用迭代 前、中、后序遍历测试
