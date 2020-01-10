@@ -16,6 +16,7 @@ class BinarySearchTree<Element: Comparable> {
     
     private var size: Int = 0
     
+    //leetcode:https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/ 
     func add(_ element: Element) {
         
         if root == nil {
@@ -407,6 +408,7 @@ extension Node: Equatable {
         return Unmanaged.passRetained(lhs).toOpaque() == Unmanaged.passRetained(rhs).toOpaque()
 //        return lhs.element == rhs.element
     }
+    
 }
 
 

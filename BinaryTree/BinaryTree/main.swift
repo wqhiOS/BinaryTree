@@ -155,7 +155,7 @@ func traversalTest() {
     }
     print(list)
     
-    tree.postorderTraversal2()
+//    tree.postorderTraversal2()
     
 }
 
@@ -166,6 +166,104 @@ func traversalTest() {
 //AVLTreeAddTest()
 //RedBlackTreeAddTest()
 traversalTest()
+
+
+// MARK: - leetcode
+public class TreeNode {
+     public var val: Int
+     public var left: TreeNode?
+     public var right: TreeNode?
+     public init(_ val: Int) {
+         self.val = val
+         self.left = nil
+         self.right = nil
+     }
+}
+class Solution {
+    //701
+    func insertIntoBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
+        var root = root
+        if root == nil {
+            root = TreeNode(val)
+            return root
+        }
+        var node = root,parentNode = root
+        var compare = 0
+        while node != nil {
+            parentNode = node
+            if val < node!.val {
+                node = node!.left
+                compare = -1
+            }else if val > node!.val {
+                node = node?.right
+                compare = 1
+            }else {
+                compare = 0
+                break
+            }
+        }
+        if compare < 0 {
+            parentNode?.left = TreeNode(val)
+        }else if compare > 0{
+            parentNode?.right = TreeNode(val)
+        }
+        
+        return root
+    }
+    //450
+    func deleteNode(_ root: TreeNode?, _ key: Int) -> TreeNode? {
+        
+        guard let _root = root else {
+            return root
+        }
+        //查找key对应的node
+        var keyNode: TreeNode?
+        var queue = [TreeNode]()
+        queue.append(_root)
+        while let node = queue.first {
+            if node.val == key {
+                keyNode = node
+                break
+            }else {
+                if let left = node.left {
+                    queue.append(left)
+                }
+                if let right = node.right {
+                    queue.append(right)
+                }
+            }
+        }
+        guard let _keyNode = keyNode else{
+            return root
+        }
+        
+        //_keyNode 找到了
+        var willRemoveNode: TreeNode?
+        let left = _keyNode.left
+        let right = _keyNode.right
+        if left != nil && right != nil {//度为2
+            //查找前驱结点
+            var preNode = left!
+            while preNode.right != nil {
+                preNode = preNode.right
+            }
+        }
+        
+        if left == nil && right == nil {//度为0
+            
+        }else {//度为1
+            
+        }
+        
+        return nil
+    }
+    
+    func node(val: Int, root: TreeNode) {
+       
+    }
+}
+
+
 
 
 
