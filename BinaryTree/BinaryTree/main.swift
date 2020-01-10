@@ -217,6 +217,9 @@ class Solution {
             return root
         }
         //查找key对应的node
+        var willRemoveParentNode: TreeNode?
+        var willRemoveNode: TreeNode?
+        
         var keyNode: TreeNode?
         var queue = [TreeNode]()
         queue.append(_root)
@@ -238,15 +241,18 @@ class Solution {
         }
         
         //_keyNode 找到了
-        var willRemoveNode: TreeNode?
+        
+        
         let left = _keyNode.left
         let right = _keyNode.right
         if left != nil && right != nil {//度为2
             //查找前驱结点
             var preNode = left!
             while preNode.right != nil {
-                preNode = preNode.right
+                willRemoveParentNode = preNode
+                preNode = preNode.right!
             }
+            willRemoveNode = preNode
         }
         
         if left == nil && right == nil {//度为0
